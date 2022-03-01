@@ -157,11 +157,11 @@ function MriReconMKBiLMDM(Y::Array{T1, 2}, K::Array{T1,2}, M::BitArray{2}, param
         Xhat_DKB = Dn * K * Bn;
         loss = norm(Xhat_DKB - Xhat_prev)/norm(Xhat_prev);
         Xhat_prev = copy(Xhat_DKB);
-        if flag ==0
+        if flag == 0
             imgLoss[noIter] = norm(img - Xhat_DKB)/norm(img);
-            println("Main Task Iteration Number ", noIter, ": Loss Value ", loss, "; NRMSE ", imgLoss[noIter]);
+            #println("Main Task Iteration Number ", noIter, ": Loss Value ", loss, "; NRMSE ", imgLoss[noIter]);
         else
-            println("Main Task Iteration Number ", noIter, ": Loss Value ", loss, ".");
+            #println("Main Task Iteration Number ", noIter, ": Loss Value ", loss, ".");
         end
     end
     println("Main Task Terminated at Iteration ", noIter, " for Loss Value ", loss, ".");
