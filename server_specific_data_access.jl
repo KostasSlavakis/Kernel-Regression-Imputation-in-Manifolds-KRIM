@@ -64,7 +64,6 @@ reader = matopen(joinpath(datadir, dataname));
 data = read(reader);
 close(reader);
 if usamp_type == "retrospective"
-    print("Hello")
     # (ImageData (Image Domain data), Navigator Data):
     Ynav = data["Ynav"];
     ImageData = data["ImageData"];
@@ -122,6 +121,7 @@ elseif usamp_type == "prospective"
     
     # k-space Vectorization: (As the kspace is acquired from scanner; It is already undrersampled)
     Y = reshape(Y, Np*Nf, Nfr, Nc);
+    
 end
 
 # Empty variables:

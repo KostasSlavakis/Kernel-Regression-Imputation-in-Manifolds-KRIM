@@ -4,21 +4,21 @@
 @__DIR__
 server_name = "personal";
 dataname = "INVIVOCARD-200256256.mat";
-maskname = "Mask200256256-8xR.mat";
+maskname = "Mask200256256-RxR.mat";
 usamp_type = "retrospective";
-obsNo = 0;
+#server_name = "personal";
+#dataname = "PROSPECTIVE2-156192300.mat";
+#maskname = "Mask156192300-PxC.mat";
+#usamp_type = "prospective";
+
+obsNo = 101;
 
 println("Server name: ", server_name);
 println("Data name: ", dataname);
 println("Mask Name: ", maskname);
 println("Sampling Method: ", usamp_type);
 println("Observation Number: ", obsNo);
-#println("Parameter File: ",  ARGS[5]);
-
-#server_name = "ccr";
-#dataname = "PROSPECTIVE-156192300.mat";
-#maskname = "Mask156192300-PxC.mat";
-#usamp_type = "prospective";
+#println("Parameter File: ",  ARGS[5]);=-0962
 
 k1 = findfirst(isequal('-'), dataname);
 namedata = dataname[1:(k1-1)];
@@ -119,7 +119,7 @@ for i = 1:Nc
         if Nc != 1
             @time global X, D, B, errConv = MriReconMKBiLMDM(Y[:,:,i], Khat, Mask, param, [-1.0]);
         else
-            @time global X, D, B, errConv = MriReconMKBiLMDM(Y, Khat, Mask, param, [-1.0]);
+            @time global X, D, B, errConv = MriReconMKBiLMDM(Y[:,:,1], Khat, Mask, param, [-1.0]);
         end
     end
     println("Step 4: MRI Reconstruction Complete ..."); println()
@@ -165,10 +165,10 @@ dump(dparams); println()
 println("RECONSTRUCTION ATTRIBUTES:")
 dump(param); println()
 
-if usamp_type == "retrospective"
-    println("The Error in reference to X* : ", err1); println()
-    println("The Error in reference to DKB : ", err2); println()
-end
+#if usamp_type == "retrospective"
+#    println("The Error in reference to X* : ", err1); println()
+#    println("The Error in reference to DKB : ", err2); println()
+#end
 
 ################################################################################################
 # Save the output files:
